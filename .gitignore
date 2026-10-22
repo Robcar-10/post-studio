@@ -39,3 +39,17 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# supabase local dev
+supabase/.branches
+supabase/.temp
+
+# secrets / keys (belt + suspenders)
+*.key
+secrets.json
+service-account*.json
+
+# editor artifacts
+.idea/
+*.swp
+*.swo
