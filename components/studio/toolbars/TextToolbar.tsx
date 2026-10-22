@@ -5,7 +5,7 @@ import type { FieldStyle } from "@/lib/types";
 const FONT_PRESETS = [
   { id: "display", label: "Display · Work Sans",  stack: '"Work Sans", system-ui, sans-serif',     weight: 900 },
   { id: "body",    label: "Body · Inter",          stack: '"Inter", system-ui, sans-serif',          weight: 700 },
-  { id: "soft",    label: "Soft · Palanquin",      stack: '"Palanquin", "Inter", sans-serif',        weight: 600 },
+  { id: "label",   label: "Label · Montserrat",    stack: '"Montserrat", "Inter", sans-serif',       weight: 800 },
   { id: "mono",    label: "Mono · Menlo",           stack: "Menlo, Consolas, monospace",              weight: 600 },
   { id: "serif",   label: "Serif · Georgia",        stack: 'Georgia, "Times New Roman", serif',       weight: 600 },
 ];

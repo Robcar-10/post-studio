@@ -232,7 +232,7 @@ export default function Home() {
               </svg>
             </div>
             <h3>Brand-locked, always</h3>
-            <p>Palanquin Dark, RUT purple/coral, the gradient, the dark hero — baked in. New hires can&apos;t go off-brand.</p>
+            <p>Work Sans, Inter, Montserrat, RUT purple/coral, the gradient, the dark hero — baked in. New hires can&apos;t go off-brand.</p>
           </div>
         </div>
       </section>

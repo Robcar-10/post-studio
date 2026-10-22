@@ -1,5 +1,5 @@
 "use client";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import type { DraftStore, Project } from "@/lib/types";
 import { suggestDraftName, friendlyTimeAgo } from "@/lib/drafts";
 
@@ -22,11 +22,13 @@ export function DraftsModal({
   const [renameValue, setRenameValue] = useState("");
   const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
-  const [saveAsName, setSaveAsName] = useState(() => suggestDraftName(currentProject));
-
-  useEffect(() => {
-    setSaveAsName(suggestDraftName(currentProject));
-  }, [currentProject]);
+  // Suggested name follows the project; the user's own typing wins until the project changes.
+  const suggested = useMemo(() => suggestDraftName(currentProject), [currentProject]);
+  const [typedName, setTypedName] = useState<string | null>(null);
+  const [lastSuggested, setLastSuggested] = useState(suggested);
+  if (lastSuggested !== suggested) { setLastSuggested(suggested); setTypedName(null); }
+  const saveAsName = typedName ?? suggested;
+  const setSaveAsName = (v: string) => setTypedName(v);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();

@@ -22,9 +22,10 @@ export const BRAND = {
   yellow:        "#FFDB3B",
 } as const;
 
-export const FONT_DISPLAY = 'var(--font-palanquin-dark), var(--font-palanquin), var(--font-work-sans), "Inter", sans-serif';
-export const FONT_BODY    = 'var(--font-palanquin), var(--font-inter), -apple-system, sans-serif';
-export const FONT_EYEBROW = 'var(--font-palanquin-dark), var(--font-palanquin), var(--font-inter), sans-serif';
+// Type system — see app/layout.tsx. Headlines: Work Sans 800/900. Body: Inter. Eyebrows: Montserrat 800.
+export const FONT_DISPLAY = 'var(--font-work-sans), "Work Sans", system-ui, sans-serif';
+export const FONT_BODY    = 'var(--font-inter), "Inter", -apple-system, system-ui, sans-serif';
+export const FONT_EYEBROW = 'var(--font-montserrat), "Montserrat", var(--font-inter), sans-serif';
 
 export const GRAD_CTA       = `linear-gradient(90deg, ${BRAND.purple}, ${BRAND.coral})`;
 export const GRAD_HERO_DARK = `linear-gradient(135deg, ${BRAND.ink1} 0%, ${BRAND.ink3} 55%, ${BRAND.ink1} 100%)`;
