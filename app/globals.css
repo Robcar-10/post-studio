@@ -420,8 +420,8 @@ button.ghost:disabled { opacity: 0.5; cursor: wait; }
 
 /* ── Landing page ─────────────────────── */
 .landing {
-  --display: var(--font-palanquin-dark), "Palanquin Dark", "Palanquin", sans-serif;
-  font-family: "Inter", -apple-system, sans-serif;
+  --display: var(--font-work-sans), "Work Sans", sans-serif;
+  font-family: var(--font-inter), "Inter", -apple-system, sans-serif;
   color: var(--fg); background: var(--bg); min-height: 100vh;
   -webkit-font-smoothing: antialiased;
 }

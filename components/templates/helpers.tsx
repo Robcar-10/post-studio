@@ -9,7 +9,7 @@ export function mergeFieldStyle(baseStyle: CSSProperties, fieldStyle: FieldStyle
   const FONT_PRESETS: Record<string, string> = {
     display: '"Work Sans", system-ui, sans-serif',
     body: '"Inter", system-ui, sans-serif',
-    soft: '"Palanquin", "Inter", sans-serif',
+    label: '"Montserrat", "Inter", sans-serif',
     mono: "Menlo, Consolas, monospace",
     serif: 'Georgia, "Times New Roman", serif',
   };

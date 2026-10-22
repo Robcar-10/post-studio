@@ -29,14 +29,21 @@ export function useHistoryState<S>(
   const lastCommitTs = useRef(0);
   const batchTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pendingPrev = useRef<S | null>(null);
-  const [, force] = useState(0);
+  // Mirror of the ref-held stacks so the render can read them without touching refs.
+  const [stackState, setStackState] = useState({ canUndo: false, canRedo: false });
+  const force = useCallback(() => {
+    setStackState({
+      canUndo: past.current.length > 0 || pendingPrev.current !== null,
+      canRedo: future.current.length > 0,
+    });
+  }, []);
 
   const commit = useCallback((prev: S) => {
     past.current.push(prev);
     if (past.current.length > limit) past.current.shift();
     future.current = [];
-    force((x) => x + 1);
-  }, [limit]);
+    force();
+  }, [limit, force]);
 
   const setState: SetStateFn<S> = useCallback((nextOrFn, opts = {}) => {
     _setState((prev) => {
@@ -84,20 +91,20 @@ export function useHistoryState<S>(
       if (past.current.length === 0) return prev;
       const last = past.current.pop()!;
       future.current.push(prev);
-      force((x) => x + 1);
+      force();
       return last;
     });
-  }, [commit]);
+  }, [commit, force]);
 
   const redo = useCallback(() => {
     _setState((prev) => {
       if (future.current.length === 0) return prev;
       const next = future.current.pop()!;
       past.current.push(prev);
-      force((x) => x + 1);
+      force();
       return next;
     });
-  }, []);
+  }, [force]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -116,7 +123,7 @@ export function useHistoryState<S>(
 
   return [state, setState, {
     undo, redo,
-    canUndo: past.current.length > 0 || pendingPrev.current !== null,
-    canRedo: future.current.length > 0,
+    canUndo: stackState.canUndo,
+    canRedo: stackState.canRedo,
   }];
 }

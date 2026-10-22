@@ -93,9 +93,10 @@ function useDrafts(project: Project, applyProject: (p: Project) => void, isSigne
         })
         .catch(() => setStore(readDrafts()));
     } else if (!isSignedIn) {
-      setStore(readDrafts());
+      // Defer so the synchronous setState happens outside the effect body (react-hooks rule).
+      const t = setTimeout(() => setStore(readDrafts()), 0);
+      return () => clearTimeout(t);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSignedIn]);
 
   // Autosave debounced 600ms
@@ -227,10 +228,10 @@ export default function StudioPage() {
     if (typeof window === "undefined") return;
     const params = new URLSearchParams(window.location.search);
     if (params.get("upgraded") === "1") {
-      setUpgradedToast(true);
-      setIsPro(true);
       window.history.replaceState({}, "", "/studio");
-      setTimeout(() => setUpgradedToast(false), 5000);
+      const show = setTimeout(() => { setUpgradedToast(true); setIsPro(true); }, 0);
+      const hide = setTimeout(() => setUpgradedToast(false), 5000);
+      return () => { clearTimeout(show); clearTimeout(hide); };
     }
   }, []);
 

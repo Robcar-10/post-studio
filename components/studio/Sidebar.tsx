@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 import { UserButton, useUser } from "@clerk/nextjs";
 import type { Template, Slide } from "@/lib/types";
 import { ProGateModal } from "./ProGateModal";
@@ -92,9 +93,9 @@ export function Sidebar({ templates, activeTpl, allSlides, setTplId, slideCount,
               </div>
             </div>
           ) : (
-            <a href="/sign-in" style={{ display: "block", marginBottom: 10, fontSize: 12, color: "rgba(255,255,255,0.6)", textDecoration: "none" }}>
+            <Link href="/sign-in" style={{ display: "block", marginBottom: 10, fontSize: 12, color: "rgba(255,255,255,0.6)", textDecoration: "none" }}>
               Sign in to sync →
-            </a>
+            </Link>
           )}
           {!isPro && isSignedIn && (
             <button

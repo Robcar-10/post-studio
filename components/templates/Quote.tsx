@@ -23,7 +23,7 @@ function render(ctx: RenderContext): ReactNode {
   const Quoted = (
     <div style={{ fontFamily: FONT_DISPLAY, fontWeight: 700, fontStyle: "italic",
       fontSize: Math.min(H * 0.06, W * 0.052) * fontScale, lineHeight: 1.25, color: fg, letterSpacing: -0.5 }}>
-      "{T("quote", {}, v.quote)}"
+      &ldquo;{T("quote", {}, v.quote)}&rdquo;
     </div>
   );
   const initials = (v.author || "").split(" ").map((s: string) => s[0]).slice(0, 2).join("");
@@ -80,7 +80,7 @@ function render(ctx: RenderContext): ReactNode {
               background: gradient ? resolveGrad(true, accent, brandColors) : "none",
               WebkitBackgroundClip: gradient ? "text" : "border-box",
               backgroundClip: gradient ? "text" : "border-box",
-              marginBottom: -H * 0.03 }}>"</div>
+              marginBottom: -H * 0.03 }}>&ldquo;</div>
             <div style={{ fontFamily: FONT_DISPLAY, fontWeight: 800,
               fontSize: Math.min(H * 0.07, W * 0.062) * fontScale, lineHeight: 1.18, color: fg, letterSpacing: -1 }}>
               {T("quote", {}, v.quote)}
